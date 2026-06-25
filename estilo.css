@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(90deg, rgba(0,19,186,1) 0%, rgba(24,60,201,1) 52%, rgba(0,0,214,1) 100%);
+    color: white;
+}
+
+
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+
+nav {
+    padding: 25px;
+    text-align: center;
+}
+
+nav h2 {
+    display: inline-block;
+    margin-right: 25px;
+}
+
+nav ul {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+#contenido {
+    padding: 40px;
+}
+
+
+table {
+    width: 60%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+
+th, td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+}
+
+img{
+    margin: 2px;
+}
+
+.contenedor-cajas {
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.caja1, .caja2, .caja3 {
+    flex: 0 0 200px;
+    height: 260px;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.caja1 { background-color: rgb(28, 0, 151); }
+.caja2 { background-color: rgba(20, 63, 158, 0.9); }
+.caja3 { background-color: rgb(22, 0, 123); }
+
+.caja1 img,
+.caja2 img,
+.caja3 img {
+    width: 100%;
+}
+
+.caja1:hover{
+    transform: rotate(360deg);
+transition: 2s;
+}
+.caja2:hover{
+    transform: rotateX(360deg);
+    transition: 2s;
+}
+.caja3:hover{
+    transform: rotateY(360deg);
+    transition: 2s;
+}
+
+
+aside {
+    padding: 20px;
+}
+
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+}

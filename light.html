@@ -193,12 +193,15 @@ nav{
     background:#0b0820;
 }
 
-.hero-panel img{
+.hero-panel img,
+.hero-panel video{
     width:100%;
     height:100%;
     min-height:320px;
+    aspect-ratio:16 / 9;
     display:block;
     object-fit:cover;
+    background:#05040d;
     filter:grayscale(100%) contrast(1.1);
 }
 
@@ -241,6 +244,68 @@ nav{
 
 .section-title span{
     color:var(--purple-bright);
+}
+
+.portfolio-tabs{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:34px;
+}
+
+.portfolio-tabs a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:42px;
+    padding:0 16px;
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:6px;
+    color:white;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:800;
+    text-transform:uppercase;
+    background:rgba(255,255,255,.04);
+}
+
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:16px;
+}
+
+.video-card{
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:8px;
+    background:#0b0820;
+}
+
+.video-card video{
+    width:100%;
+    aspect-ratio:9 / 16;
+    display:block;
+    object-fit:cover;
+    background:#05040d;
+}
+
+.video-info{
+    padding:18px;
+}
+
+.video-info h3{
+    margin-bottom:8px;
+    color:white;
+    font-size:16px;
+    font-weight:800;
+    text-transform:uppercase;
+}
+
+.video-info p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.55;
 }
 
 .gallery-grid{
@@ -313,6 +378,7 @@ footer{
         justify-content:center;
     }
 
+    .video-grid,
     .gallery-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
     }
@@ -335,6 +401,7 @@ footer{
         font-size:clamp(54px, 17vw, 80px);
     }
 
+    .video-grid,
     .gallery-grid{
         grid-template-columns:1fr;
     }
@@ -345,7 +412,7 @@ footer{
 <body>
 <div class="container">
     <nav>
-        <a href="index.html" class="logo">
+        <a href="index.html#inicio" class="logo">
             <span class="logo-mark">B</span>
             <span>BARUCH</span>
         </a>
@@ -355,10 +422,10 @@ footer{
             <a href="index.html#servicios">Servicios</a>
             <a href="light.html" class="active">Portafolio</a>
             <a href="index.html#nosotros">Nosotros</a>
-            <a href="index.html#contacto">Contacto</a>
+            <a href="pagjavasscrio.html">Contacto</a>
         </div>
 
-        <a href="index.html#contacto" class="btn">Agenda una reunion</a>
+        <a href="pagjavasscrio.html" class="btn">Agenda una reunion</a>
     </nav>
 
     <main>
@@ -370,23 +437,79 @@ footer{
                     <span>personalidad.</span>
                 </h1>
                 <p class="hero-text">
-                    Una seleccion de piezas visuales, marcas y contenido creado para proyectos con direccion clara y presencia digital.
+                    Una seleccion de videos, piezas visuales, marcas y contenido creado para proyectos con direccion clara y presencia digital.
                 </p>
                 <div class="hero-actions">
-                    <a href="#galeria" class="btn">Ver galeria</a>
-                    <a href="index.html" class="btn-secondary">Volver al inicio</a>
+                    <a href="#videos" class="btn">Ver videos</a>
+                    <a href="#disenos" class="btn-secondary">Ver disenos</a>
+                    <a href="index.html#inicio" class="btn-secondary">Volver al inicio</a>
                 </div>
             </div>
 
             <div class="hero-panel">
-                <img src="multimedia/karina.png" alt="Proyecto destacado de Baruch">
+                <video controls autoplay muted loop playsinline preload="metadata" poster="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='100%25' height='100%25' fill='%23050b18'/%3E%3Ctext x='50%25' y='50%25' dy='.35em' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-size='24'%3ECargando video...%3C/text%3E%3C/svg%3E">
+                    <source src="multimedia/LAMBORA_X_DIA_DEL_PADRE_2.mp4" type="video/mp4">
+                    Tu navegador no soporta este video.
+                </video>
             </div>
         </section>
 
-        <section class="section" id="galeria">
+        <section class="section" id="videos">
             <div class="section-header">
-                <div class="section-kicker">Galeria</div>
-                <h2 class="section-title">Contenido que se <span>recuerda.</span></h2>
+                <div class="section-kicker">Videos</div>
+                <h2 class="section-title">Contenido que se <span>mueve.</span></h2>
+            </div>
+
+            <div class="portfolio-tabs">
+                <a href="#videos">Videos</a>
+                <a href="#disenos">Disenos graficos</a>
+            </div>
+
+            <div class="video-grid">
+                <article class="video-card">
+                    <video controls autoplay muted loop playsinline preload="metadata" poster="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='100%25' height='100%25' fill='%23050b18'/%3E%3Ctext x='50%25' y='50%25' dy='.35em' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-size='24'%3ECargando video...%3C/text%3E%3C/svg%3E">
+                        <source src="multimedia/LAMBORA_X_DIA_DEL_PADRE_2.mp4" type="video/mp4">
+                        Tu navegador no soporta este video.
+                    </video>
+                    <div class="video-info">
+                        <h3>Lambora</h3>
+                        <p>Pieza audiovisual para campana de Dia del Padre.</p>
+                    </div>
+                </article>
+
+                <article class="video-card">
+                    <video controls autoplay muted loop playsinline preload="metadata" poster="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='100%25' height='100%25' fill='%23050b18'/%3E%3Ctext x='50%25' y='50%25' dy='.35em' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-size='24'%3ECargando video...%3C/text%3E%3C/svg%3E">
+                        <source src="multimedia/SUBUZ_X_CAMPEONATO.mp4" type="video/mp4">
+                        Tu navegador no soporta este video.
+                    </video>
+                    <div class="video-info">
+                        <h3>Subuz</h3>
+                        <p>Video vertical para activacion y contenido de campeonato.</p>
+                    </div>
+                </article>
+
+                <article class="video-card">
+                    <video controls autoplay muted loop playsinline preload="metadata" poster="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='100%25' height='100%25' fill='%23050b18'/%3E%3Ctext x='50%25' y='50%25' dy='.35em' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-size='24'%3ECargando video...%3C/text%3E%3C/svg%3E">
+                        <source src="multimedia/DR_CHUNG_X_3_CIRUGIAS_2.mp4" type="video/mp4">
+                        Tu navegador no soporta este video.
+                    </video>
+                    <div class="video-info">
+                        <h3>Dr. Chung</h3>
+                        <p>Contenido audiovisual para comunicar servicios y experiencia.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="disenos">
+            <div class="section-header">
+                <div class="section-kicker">Disenos graficos</div>
+                <h2 class="section-title">Piezas que se <span>recuerdan.</span></h2>
+            </div>
+
+            <div class="portfolio-tabs">
+                <a href="#videos">Videos</a>
+                <a href="#disenos">Disenos graficos</a>
             </div>
 
             <div class="gallery-grid">
@@ -472,5 +595,39 @@ footer{
 </div>
 
 <script src="lightbox.js"></script>
+<script>
+const videoPoster = 'data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'640\' height=\'360\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23050b18\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dy=\'.35em\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23ffffff\' font-family=\'Arial,sans-serif\' font-size=\'24\'%3ECargando video...%3C/text%3E%3C/svg%3E';
+
+const videos = document.querySelectorAll('video');
+videos.forEach((video) => {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.poster = videoPoster;
+    video.style.background = '#050b18';
+
+    video.addEventListener('error', () => {
+        console.error(`Video failed to load: ${video.currentSrc || video.src}`);
+        video.controls = true;
+    });
+
+    video.load();
+    video.addEventListener('loadeddata', () => {
+        console.log(`Video ready: ${video.currentSrc || video.src}`);
+    });
+    video.addEventListener('stalled', () => {
+        console.warn(`Video stalled: ${video.currentSrc || video.src}`);
+    });
+    video.addEventListener('suspend', () => {
+        console.warn(`Video suspend event: ${video.currentSrc || video.src}`);
+    });
+    video.play().then(() => {
+        console.log(`Autoplay started: ${video.currentSrc || video.src}`);
+    }).catch((error) => {
+        console.warn(`Autoplay blocked or failed for: ${video.currentSrc || video.src}`, error);
+        video.controls = true;
+    });
+});
+</script>
 </body>
 </html>

@@ -70,8 +70,10 @@ nav{
     display:flex;
     align-items:center;
     gap:12px;
+    color:white;
     font-weight:800;
     letter-spacing:.08em;
+    text-decoration:none;
 }
 
 .logo-mark{
@@ -286,11 +288,19 @@ nav{
 }
 
 .card{
+    display:block;
     min-height:210px;
     padding:24px;
     border:1px solid rgba(255,255,255,.12);
     border-radius:8px;
     background:linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.025));
+    text-decoration:none;
+    transition:.25s;
+}
+
+.card:hover{
+    border-color:rgba(255,255,255,.26);
+    transform:translateY(-4px);
 }
 
 .card h3{
@@ -458,20 +468,20 @@ nav{
 <body>
 <div class="container">
     <nav>
-        <div class="logo">
+        <a href="index.html#inicio" class="logo">
             <span class="logo-mark">B</span>
             <span>BARUCH</span>
-        </div>
+        </a>
 
         <div class="menu">
-            <a href="#inicio">Inicio</a>
-            <a href="#servicios">Servicios</a>
+            <a href="index.html#inicio">Inicio</a>
+            <a href="index.html#servicios">Servicios</a>
             <a href="light.html">Portafolio</a>
-            <a href="#nosotros">Nosotros</a>
-            <a href="#contacto">Contacto</a>
+            <a href="index.html#nosotros">Nosotros</a>
+            <a href="pagjavasscrio.html">Contacto</a>
         </div>
 
-        <a href="#contacto" class="btn">Agenda una reunion</a>
+        <a href="pagjavasscrio.html" class="btn">Agenda una reunion</a>
     </nav>
 
     <section class="hero" id="inicio">
@@ -489,8 +499,8 @@ nav{
             </p>
 
             <div class="hero-buttons">
-                <a href="#contacto" class="btn">Agenda una reunion</a>
-                <a href="light.html" class="btn-secondary">Ver portafolio</a>
+                <a href="pagjavasscrio.html" class="btn">Agenda una reunion</a>
+                <a href="light.html#videos" class="btn-secondary">Ver portafolio</a>
             </div>
         </div>
 
@@ -509,20 +519,20 @@ nav{
         </div>
 
         <div class="cards">
-            <article class="card">
+            <a class="card" href="pagjavasscrio.html">
                 <h3>Branding</h3>
                 <p>Construimos identidades visuales con concepto, estilo y una presencia clara para tu marca.</p>
-            </article>
+            </a>
 
-            <article class="card">
+            <a class="card" href="light.html#videos">
                 <h3>Contenido</h3>
                 <p>Diseñamos piezas para redes, campanas y lanzamientos con una direccion visual consistente.</p>
-            </article>
+            </a>
 
-            <article class="card">
+            <a class="card" href="pagjavasscrio.html">
                 <h3>Estrategia</h3>
                 <p>Ordenamos tus ideas para que cada publicacion, pieza y accion tenga una intencion real.</p>
-            </article>
+            </a>
         </div>
     </section>
 
@@ -533,16 +543,16 @@ nav{
         </div>
 
         <div class="project-grid">
-            <a class="project" href="light.html" aria-label="Ver portafolio">
+            <a class="project" href="light.html#disenos" aria-label="Ver portafolio">
                 <img src="multimedia/karina.png" alt="Proyecto Karina">
             </a>
-            <a class="project" href="light.html" aria-label="Ver portafolio">
+            <a class="project" href="light.html#disenos" aria-label="Ver portafolio">
                 <img src="multimedia/DOMI.png" alt="Proyecto Domi">
             </a>
-            <a class="project" href="light.html" aria-label="Ver portafolio">
+            <a class="project" href="light.html#disenos" aria-label="Ver portafolio">
                 <img src="multimedia/tambo.png" alt="Proyecto Tambo">
             </a>
-            <a class="project" href="light.html" aria-label="Ver portafolio">
+            <a class="project" href="light.html#disenos" aria-label="Ver portafolio">
                 <img src="multimedia/BELEN.png" alt="Proyecto Belen">
             </a>
         </div>

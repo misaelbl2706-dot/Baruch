@@ -1,100 +1,442 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>LODEMISA</title>
-    <link rel="stylesheet" href="estilo.css">
-    <link rel="stylesheet" href="estilo.css">
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
-  </head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto | BARUCH Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#05040d;
+    --bg-deep:#010106;
+    --purple:#4a25e8;
+    --purple-bright:#6338ff;
+    --white:#f8f8fb;
+    --muted:#b8b3cc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    color:var(--white);
+    font-family:'Montserrat',Arial,sans-serif;
+    background:
+        radial-gradient(circle at 76% 26%, rgba(88,51,255,.42), transparent 35%),
+        radial-gradient(circle at 16% 82%, rgba(44,28,145,.25), transparent 30%),
+        linear-gradient(135deg, var(--bg-deep) 0%, #080719 48%, #120b33 100%);
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size:88px 88px;
+    mask-image:linear-gradient(to bottom, rgba(0,0,0,.4), transparent 70%);
+}
+
+.container{
+    width:min(1180px, calc(100% - 40px));
+    margin:auto;
+    position:relative;
+    z-index:1;
+}
+
+nav{
+    min-height:92px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:28px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:white;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-decoration:none;
+}
+
+.logo-mark{
+    width:42px;
+    height:42px;
+    display:grid;
+    place-items:center;
+    background:var(--purple);
+    color:#fff;
+    border-radius:50%;
+    font-family:'Anton',Impact,sans-serif;
+    font-size:28px;
+    line-height:1;
+}
+
+.menu{
+    display:flex;
+    gap:30px;
+    align-items:center;
+}
+
+.menu a{
+    color:rgba(255,255,255,.76);
+    text-decoration:none;
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+    transition:.25s;
+}
+
+.menu a:hover,
+.menu a.active{
+    color:var(--white);
+}
+
+.btn,
+.btn-secondary{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:48px;
+    padding:0 22px;
+    border-radius:6px;
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:800;
+    text-transform:uppercase;
+}
+
+.btn{
+    border:1px solid rgba(255,255,255,.18);
+    background:var(--purple);
+    box-shadow:0 18px 42px rgba(74,37,232,.35);
+}
+
+.btn-secondary{
+    border:1px solid rgba(255,255,255,.28);
+    background:rgba(255,255,255,.04);
+}
+
+.contact-hero{
+    min-height:calc(100vh - 92px);
+    display:grid;
+    grid-template-columns:minmax(300px,.9fr) minmax(320px,1.1fr);
+    align-items:center;
+    gap:36px;
+    padding:48px 0 84px;
+}
+
+.hero-small{
+    margin-bottom:22px;
+    color:var(--purple-bright);
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+}
+
+.hero-title{
+    max-width:610px;
+    margin-bottom:26px;
+    font-family:'Anton',Impact,'Arial Black',sans-serif;
+    font-size:clamp(62px, 7vw, 108px);
+    line-height:.92;
+    font-weight:400;
+    text-transform:uppercase;
+}
+
+.hero-title span{
+    display:block;
+    color:var(--purple-bright);
+    text-shadow:0 0 34px rgba(99,56,255,.28);
+}
+
+.hero-text{
+    max-width:520px;
+    margin-bottom:30px;
+    color:var(--muted);
+    line-height:1.7;
+    font-size:16px;
+}
+
+.hero-actions{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.contact-panel{
+    position:relative;
+    overflow:hidden;
+    padding:34px;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:8px;
+    background:linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.025));
+}
+
+.contact-panel::after{
+    content:"B";
+    position:absolute;
+    right:-24px;
+    bottom:-70px;
+    color:rgba(99,56,255,.18);
+    font-family:'Anton',Impact,sans-serif;
+    font-size:260px;
+    line-height:1;
+    pointer-events:none;
+}
+
+.contact-panel h2{
+    position:relative;
+    z-index:1;
+    margin-bottom:16px;
+    font-size:20px;
+    font-weight:800;
+    text-transform:uppercase;
+}
+
+.contact-panel p{
+    position:relative;
+    z-index:1;
+    margin-bottom:24px;
+    color:var(--muted);
+    line-height:1.7;
+}
+
+.contact-list{
+    position:relative;
+    z-index:1;
+    display:grid;
+    gap:14px;
+}
+
+.contact-item{
+    display:block;
+    padding:18px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:8px;
+    background:rgba(255,255,255,.04);
+    color:white;
+    text-decoration:none;
+}
+
+.contact-item strong{
+    display:block;
+    margin-bottom:6px;
+    color:var(--purple-bright);
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+}
+
+.contact-item span{
+    font-weight:800;
+}
+
+.section{
+    padding:0 0 92px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:18px;
+}
+
+.card{
+    display:block;
+    min-height:190px;
+    padding:24px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:8px;
+    background:linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.025));
+    text-decoration:none;
+    transition:.25s;
+}
+
+.card:hover{
+    border-color:rgba(255,255,255,.26);
+    transform:translateY(-4px);
+}
+
+.card h3{
+    margin-bottom:14px;
+    color:white;
+    font-size:18px;
+    font-weight:800;
+    text-transform:uppercase;
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.65;
+}
+
+footer{
+    padding:34px 0 46px;
+    color:var(--muted);
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+}
+
+@media(max-width:960px){
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+        padding:18px 0;
+    }
+
+    .menu{
+        order:3;
+        width:100%;
+        justify-content:center;
+        gap:18px;
+        flex-wrap:wrap;
+    }
+
+    .contact-hero{
+        min-height:auto;
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .hero-text{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .hero-actions{
+        justify-content:center;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:620px){
+    .container{
+        width:min(100% - 28px, 1180px);
+    }
+
+    nav .btn{
+        display:none;
+    }
+
+    .menu a{
+        font-size:12px;
+    }
+
+    .hero-title{
+        font-size:clamp(54px, 17vw, 80px);
+    }
+
+    .contact-panel{
+        padding:24px;
+    }
+}
+</style>
+</head>
 
 <body>
-
-    <!-- HEADER -->
-    <header>
-        <h1 id="Tituloheader">LODEMISA</h1>
-        <p>TU PROYECTO EMPIEZA AQUÍ</p>
-    </header>
-
-    <!-- NAV -->
+<div class="container">
     <nav>
-    <h2 class="animate__animated animate__fadeInDown">MENU</h2>
-    <ul class="animate__animated animate__fadeInDown">
-        <li><a href="index.html">INICIO</a></li>
-        <li>TESTIMONIOS</li>
-        <li>SERVICIOS</li>
-        <li><a href="light.html">PORTAFOLIO</a></li>
-        <li><a href="pagjavasscrio.html">CONTACTO</a></li>
-    </ul>
-</nav>
+        <a href="index.html" class="logo">
+            <span class="logo-mark">B</span>
+            <span>BARUCH</span>
+        </a>
 
+        <div class="menu">
+            <a href="index.html#inicio">Inicio</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="light.html">Portafolio</a>
+            <a href="index.html#nosotros">Nosotros</a>
+            <a href="pagjavasscrio.html" class="active">Contacto</a>
+        </div>
 
-    <section id="JavaScript">
+        <a href="mailto:hi@lodemisa.pe" class="btn">Escribenos</a>
+    </nav>
 
-        <article>
-            <h2>¿LODEMISA?</h2>
-            <p>“Este nombre nace de algo muy simple pero especial: 
-             la forma en que la gente cercana me llama, ‘Misa’.</p> 
+    <main>
+        <section class="contact-hero">
+            <div>
+                <div class="hero-small">Contacto Baruch</div>
+                <h1 class="hero-title">
+                    Hablemos de
+                    <span>tu marca.</span>
+                </h1>
+                <p class="hero-text">
+                    Cuéntanos qué tienes en mente. Podemos ayudarte a ordenar la idea, darle presencia visual y convertirla en una marca que conecte.
+                </p>
+                <div class="hero-actions">
+                    <a href="mailto:hi@lodemisa.pe" class="btn">Enviar correo</a>
+                    <a href="light.html#videos" class="btn-secondary">Ver portafolio</a>
+                </div>
+            </div>
 
-             <p>Es un apodo que tiene confianza, cercanía y cariño… 
-            justo lo que quiero que se sienta en cada diseño.</p>
+            <aside class="contact-panel">
+                <h2>Conversemos</h2>
+                <p>Agenda una reunion o escribenos para empezar con tu proximo proyecto.</p>
 
-             <p>Quise unir esa esencia con la idea de ‘Lo de’, 
-             porque suena a recomendación real, de boca en boca:
-             ‘¿Dónde hiciste ese diseño?’‘En Lo de Misa.’</p>
+                <div class="contact-list">
+                    <a class="contact-item" href="tel:+51933200817">
+                        <strong>Telefono</strong>
+                        <span>933 200 817</span>
+                    </a>
+                    <a class="contact-item" href="mailto:hi@lodemisa.pe">
+                        <strong>Correo</strong>
+                        <span>hi@lodemisa.pe</span>
+                    </a>
+                    <a class="contact-item" href="index.html#servicios">
+                        <strong>Servicios</strong>
+                        <span>Branding, contenido y estrategia</span>
+                    </a>
+                </div>
+            </aside>
+        </section>
 
-            <p>Lo de Misa no es solo un nombre, es mi espacio creativo. 
-             Es mi mundo, mi pasión por el diseño y por todo lo que conecta con el arte. 
-             Cada proyecto es una forma de expresar ideas, emociones y estilo.”</p>
-        </article>
+        <section class="section">
+            <div class="cards">
+                <a class="card" href="mailto:hi@lodemisa.pe">
+                    <h3>Cuéntanos</h3>
+                    <p>Compartenos tu idea, tu objetivo y el estilo que imaginas para tu proyecto.</p>
+                </a>
 
+                <a class="card" href="index.html#servicios">
+                    <h3>Ordenamos</h3>
+                    <p>Definimos direccion visual, piezas necesarias y una ruta clara de trabajo.</p>
+                </a>
 
-        <article>
-            <h2>NOS COMPROMETEMOS</h2>
-            <p>
-                En Lo de Misa nos comprometemos con cada proyecto desde el inicio, 
-                involucrándonos en cada detalle para construir marcas que no solo se vean bien, 
-            </p>
-            <p> 
-                sino que se sientan humanas, cercanas y auténticas. Creemos que detrás de cada diseño hay una historia que merece ser contada con intención, ç
-                por eso trabajamos contigo para darle vida a una identidad que conecte, comunique y deje huella.
-            </p>
-        </article>
+                <a class="card" href="light.html#disenos">
+                    <h3>Creamos</h3>
+                    <p>Desarrollamos contenido y diseño con una presencia coherente para tu marca.</p>
+                </a>
+            </div>
+        </section>
+    </main>
 
-
-        <article>
-            <img class="animate__animated animate__fadeInUp" src="multimedia/Misa - blue recurso.png" width="170px">
-            <img class="animate__animated animate__fadeInUp" src="multimedia/misaaaaa.png" width="170px" style="vertical-align: top;">
-            <img class="animate__animated animate__fadeInUp" src="multimedia/MISA (RECURSO).png" width="170px">
-            
-            <h2 class="animate__animated animate__pulse">CONCTANOS</h2>
-            <p>
-                NUMERO: 933 200 817
-            </p>
-
-             <p>
-                CORREO: hi@lodemisa.pe
-            </p>
-        </article>
-        <article>
-            <h2>¿LISTO PARA EMPEZAR?</h2>
-            <P> Escribeme para conversar sobre tu proyecto</P>
-        </article>
-
-    </section>
-
-    <!-- FOOTER -->
     <footer>
-        <p id="titulofooter">2026 - LODEMISA</p>
+        <p>2026 - BARUCH Agency</p>
     </footer>
-
-    <!-- SCRIPT -->
-    <script>
-        alert ("conversemos sobre tu marca")
-        let nombre = prompt ("¿Cual es tu marca?")
-    </script>
+</div>
 </body>
 </html>

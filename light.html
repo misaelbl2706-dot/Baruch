@@ -193,16 +193,13 @@ nav{
     background:#0b0820;
 }
 
-.hero-panel img,
-.hero-panel video{
+.hero-panel iframe{
     width:100%;
     height:100%;
     min-height:320px;
     aspect-ratio:16 / 9;
     display:block;
-    object-fit:cover;
-    background:#05040d;
-    filter:grayscale(100%) contrast(1.1);
+    border:none;
 }
 
 .hero-panel::after{
@@ -214,6 +211,7 @@ nav{
     font-family:'Anton',Impact,sans-serif;
     font-size:clamp(54px, 7vw, 94px);
     line-height:1;
+    pointer-events:none;
 }
 
 .section{
@@ -271,7 +269,7 @@ nav{
 
 .video-grid{
     display:grid;
-    grid-template-columns:repeat(3, minmax(0, 1fr));
+    grid-template-columns:repeat(4, minmax(0, 1fr));
     gap:16px;
 }
 
@@ -282,11 +280,11 @@ nav{
     background:#0b0820;
 }
 
-.video-card video{
+.video-card iframe{
     width:100%;
     aspect-ratio:9 / 16;
     display:block;
-    object-fit:cover;
+    border:none;
     background:#05040d;
 }
 
@@ -378,7 +376,10 @@ footer{
         justify-content:center;
     }
 
-    .video-grid,
+    .video-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+
     .gallery-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
     }
@@ -446,10 +447,13 @@ footer{
                 </div>
             </div>
 
+            <!-- VIDEO HERO: Matfisio -->
             <div class="hero-panel">
-                <video controls autoplay muted loop playsinline preload="metadata" poster="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='100%25' height='100%25' fill='%23050b18'/%3E%3Ctext x='50%25' y='50%25' dy='.35em' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-size='24'%3ECargando video...%3C/text%3E%3C/svg%3E">
-                    <source src="multimedia/LAMBORA_X_FATHER.mp4" type="video/mp4">
-                </video>
+                <iframe
+                    src="https://www.youtube.com/embed/0s76PUURB7c?autoplay=1&mute=1&loop=1&playlist=0s76PUURB7c&controls=0&playsinline=1"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
             </div>
         </section>
 
@@ -465,36 +469,59 @@ footer{
             </div>
 
             <div class="video-grid">
+
+                <!-- VIDEO 1: Matfisio -->
                 <article class="video-card">
-                    <video controls autoplay muted loop playsinline preload="metadata" poster="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='100%25' height='100%25' fill='%23050b18'/%3E%3Ctext x='50%25' y='50%25' dy='.35em' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-size='24'%3ECargando video...%3C/text%3E%3C/svg%3E">
-                        <source src="multimedia/LAMBORA_X_FATHER.mp4" type="video/mp4">
-                    </video>
+                    <iframe
+                        src="https://youtube.com/shorts/0s76PUURB7c?feature=share
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-info">
+                        <h3>Matfisio</h3>
+                        <p>Contenido audiovisual para Matfisio.</p>
+                    </div>
+                </article>
+
+                <!-- VIDEO 2: Lambora — reemplaza ID_LAMBORA con el ID del video de YouTube -->
+                <article class="video-card">
+                    <iframe
+                        src="https://www.youtube.com/embed/ID_LAMBORA?autoplay=1&mute=1&loop=1&playlist=ID_LAMBORA&controls=0&playsinline=1"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen>
+                    </iframe>
                     <div class="video-info">
                         <h3>Lambora</h3>
                         <p>Pieza audiovisual para campana de Dia del Padre.</p>
                     </div>
                 </article>
 
+                <!-- VIDEO 2: Subuz — reemplaza ID_SUBUZ con el ID del video de YouTube -->
                 <article class="video-card">
-                    <video controls autoplay muted loop playsinline preload="metadata" poster="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='100%25' height='100%25' fill='%23050b18'/%3E%3Ctext x='50%25' y='50%25' dy='.35em' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-size='24'%3ECargando video...%3C/text%3E%3C/svg%3E">
-                        <source src="multimedia/LAMBORA_X_FATHER.mp4" type="video/mp4">
-                    </video>
+                    <iframe
+                        src="https://www.youtube.com/embed/ID_SUBUZ?autoplay=1&mute=1&loop=1&playlist=ID_SUBUZ&controls=0&playsinline=1"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen>
+                    </iframe>
                     <div class="video-info">
                         <h3>Subuz</h3>
                         <p>Video vertical para activacion y contenido de campeonato.</p>
                     </div>
                 </article>
 
+                <!-- VIDEO 3: Dr. Chung — reemplaza ID_DRCHUNG con el ID del video de YouTube -->
                 <article class="video-card">
-                    <video controls autoplay muted loop playsinline preload="metadata" poster="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='100%25' height='100%25' fill='%23050b18'/%3E%3Ctext x='50%25' y='50%25' dy='.35em' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-size='24'%3ECargando video...%3C/text%3E%3C/svg%3E">
-                        <source src="multimedia/LAMBORA_X_FATHER.mp4" type="video/mp4">
-
-                    </video>
+                    <iframe
+                        src="https://www.youtube.com/embed/ID_DRCHUNG?autoplay=1&mute=1&loop=1&playlist=ID_DRCHUNG&controls=0&playsinline=1"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen>
+                    </iframe>
                     <div class="video-info">
                         <h3>Dr. Chung</h3>
                         <p>Contenido audiovisual para comunicar servicios y experiencia.</p>
                     </div>
                 </article>
+
             </div>
         </section>
 
@@ -592,39 +619,5 @@ footer{
 </div>
 
 <script src="lightbox.js"></script>
-<script>
-const videoPoster = 'data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'640\' height=\'360\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23050b18\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dy=\'.35em\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23ffffff\' font-family=\'Arial,sans-serif\' font-size=\'24\'%3ECargando video...%3C/text%3E%3C/svg%3E';
-
-const videos = document.querySelectorAll('video');
-videos.forEach((video) => {
-    video.muted = true;
-    video.defaultMuted = true;
-    video.playsInline = true;
-    video.poster = videoPoster;
-    video.style.background = '#050b18';
-
-    video.addEventListener('error', () => {
-        console.error(`Video failed to load: ${video.currentSrc || video.src}`);
-        video.controls = true;
-    });
-
-    video.load();
-    video.addEventListener('loadeddata', () => {
-        console.log(`Video ready: ${video.currentSrc || video.src}`);
-    });
-    video.addEventListener('stalled', () => {
-        console.warn(`Video stalled: ${video.currentSrc || video.src}`);
-    });
-    video.addEventListener('suspend', () => {
-        console.warn(`Video suspend event: ${video.currentSrc || video.src}`);
-    });
-    video.play().then(() => {
-        console.log(`Autoplay started: ${video.currentSrc || video.src}`);
-    }).catch((error) => {
-        console.warn(`Autoplay blocked or failed for: ${video.currentSrc || video.src}`, error);
-        video.controls = true;
-    });
-});
-</script>
 </body>
 </html>

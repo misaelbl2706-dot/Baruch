@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contacto | BARUCH Agency</title>
+<link rel="icon" type="image/png" href="multimedia/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -79,14 +80,8 @@ nav{
 .logo-mark{
     width:42px;
     height:42px;
-    display:grid;
-    place-items:center;
-    background:var(--purple);
-    color:#fff;
-    border-radius:50%;
-    font-family:'Anton',Impact,sans-serif;
-    font-size:28px;
-    line-height:1;
+    display:block;
+    object-fit:contain;
 }
 
 .menu{
@@ -128,6 +123,7 @@ nav{
     border:1px solid rgba(255,255,255,.18);
     background:var(--purple);
     box-shadow:0 18px 42px rgba(74,37,232,.35);
+    cursor:pointer;
 }
 
 .btn-secondary{
@@ -213,7 +209,7 @@ nav{
     text-transform:uppercase;
 }
 
-.contact-panel p{
+.contact-panel p.subtitle{
     position:relative;
     z-index:1;
     margin-bottom:24px;
@@ -221,34 +217,95 @@ nav{
     line-height:1.7;
 }
 
-.contact-list{
+/* Formulario */
+.form-grid{
     position:relative;
     z-index:1;
     display:grid;
+    grid-template-columns:1fr 1fr;
     gap:14px;
 }
 
-.contact-item{
-    display:block;
-    padding:18px;
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:8px;
-    background:rgba(255,255,255,.04);
-    color:white;
-    text-decoration:none;
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
 }
 
-.contact-item strong{
-    display:block;
-    margin-bottom:6px;
+.form-group.full{
+    grid-column:1 / -1;
+}
+
+.form-group label{
     color:var(--purple-bright);
-    font-size:12px;
+    font-size:11px;
+    font-weight:800;
     letter-spacing:.16em;
     text-transform:uppercase;
 }
 
-.contact-item span{
-    font-weight:800;
+.form-group input,
+.form-group select,
+.form-group textarea{
+    padding:12px 14px;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:6px;
+    background:rgba(255,255,255,.06);
+    color:var(--white);
+    font-family:'Montserrat',Arial,sans-serif;
+    font-size:14px;
+    outline:none;
+    transition:.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--purple-bright);
+    background:rgba(99,56,255,.1);
+}
+
+.form-group select option{
+    background:#0b0820;
+    color:var(--white);
+}
+
+.form-group textarea{
+    resize:vertical;
+    min-height:100px;
+}
+
+.form-submit{
+    grid-column:1 / -1;
+    margin-top:4px;
+}
+
+.form-submit .btn{
+    width:100%;
+    font-size:14px;
+}
+
+.form-msg{
+    grid-column:1 / -1;
+    display:none;
+    padding:14px;
+    border-radius:6px;
+    font-size:13px;
+    font-weight:700;
+    text-align:center;
+    text-transform:uppercase;
+}
+
+.form-msg.success{
+    background:rgba(74,37,232,.3);
+    border:1px solid var(--purple-bright);
+    color:var(--white);
+}
+
+.form-msg.error{
+    background:rgba(200,50,50,.2);
+    border:1px solid rgba(200,50,50,.5);
+    color:#ff8080;
 }
 
 .section{
@@ -353,6 +410,10 @@ footer{
     .contact-panel{
         padding:24px;
     }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
 }
 </style>
 </head>
@@ -361,7 +422,7 @@ footer{
 <div class="container">
     <nav>
         <a href="index.html" class="logo">
-            <span class="logo-mark">B</span>
+            <img src="multimedia/logo.png" alt="Baruch Agency" class="logo-mark">
             <span>BARUCH</span>
         </a>
 
@@ -395,21 +456,58 @@ footer{
 
             <aside class="contact-panel">
                 <h2>Conversemos</h2>
-                <p>Agenda una reunion o escribenos para empezar con tu proximo proyecto.</p>
+                <p class="subtitle">Completa el formulario y nos pondremos en contacto contigo pronto.</p>
 
-                <div class="contact-list">
-                    <a class="contact-item" href="tel:+51933200817">
-                        <strong>Telefono</strong>
-                        <span>933 200 817</span>
-                    </a>
-                    <a class="contact-item" href="mailto:hi@lodemisa.pe">
-                        <strong>Correo</strong>
-                        <span>hi@lodemisa.pe</span>
-                    </a>
-                    <a class="contact-item" href="index.html#servicios">
-                        <strong>Servicios</strong>
-                        <span>Branding, contenido y estrategia</span>
-                    </a>
+                <div class="form-grid" id="contactForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" placeholder="Tu nombre completo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="tucorreo@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" placeholder="+51 999 999 999">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="servicio">Servicio</label>
+                        <select id="servicio">
+                            <option value="">Selecciona un servicio</option>
+                            <option value="Branding">Branding</option>
+                            <option value="Contenido">Contenido</option>
+                            <option value="Estrategia">Estrategia</option>
+                            <option value="Video">Video</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="presupuesto">Presupuesto</label>
+                        <select id="presupuesto">
+                            <option value="">Selecciona un rango</option>
+                            <option value="Menos de S/500">Menos de S/500</option>
+                            <option value="S/500 - S/1,000">S/500 - S/1,000</option>
+                            <option value="S/1,000 - S/3,000">S/1,000 - S/3,000</option>
+                            <option value="S/3,000 - S/5,000">S/3,000 - S/5,000</option>
+                            <option value="Más de S/5,000">Más de S/5,000</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+                    </div>
+
+                    <div class="form-submit">
+                        <button class="btn" onclick="enviarFormulario()">Enviar mensaje</button>
+                    </div>
+
+                    <div class="form-msg" id="formMsg"></div>
                 </div>
             </aside>
         </section>
@@ -438,5 +536,58 @@ footer{
         <p>2026 - BARUCH Agency</p>
     </footer>
 </div>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyxiCQma5t6nQjRUSpV-Lj7fWbCjlI_v_2_mqtZcgbGkr-RRUjTOR8x3thMB3OlZh3g/exec";
+
+async function enviarFormulario() {
+    const nombre     = document.getElementById("nombre").value.trim();
+    const email      = document.getElementById("email").value.trim();
+    const telefono   = document.getElementById("telefono").value.trim();
+    const servicio   = document.getElementById("servicio").value;
+    const presupuesto = document.getElementById("presupuesto").value;
+    const mensaje    = document.getElementById("mensaje").value.trim();
+    const msg        = document.getElementById("formMsg");
+
+    if (!nombre || !email) {
+        msg.textContent = "Por favor completa al menos nombre y email.";
+        msg.className = "form-msg error";
+        msg.style.display = "block";
+        return;
+    }
+
+    const btn = document.querySelector(".form-submit .btn");
+    btn.textContent = "Enviando...";
+    btn.disabled = true;
+
+    try {
+        await fetch(SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nombre, email, telefono, servicio, presupuesto, mensaje })
+        });
+
+        msg.textContent = "¡Mensaje enviado! Nos pondremos en contacto pronto.";
+        msg.className = "form-msg success";
+        msg.style.display = "block";
+
+        document.getElementById("nombre").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("telefono").value = "";
+        document.getElementById("servicio").value = "";
+        document.getElementById("presupuesto").value = "";
+        document.getElementById("mensaje").value = "";
+
+    } catch (error) {
+        msg.textContent = "Hubo un error. Intenta de nuevo o escríbenos al correo.";
+        msg.className = "form-msg error";
+        msg.style.display = "block";
+    }
+
+    btn.textContent = "Enviar mensaje";
+    btn.disabled = false;
+}
+</script>
 </body>
 </html>

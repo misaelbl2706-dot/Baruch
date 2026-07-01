@@ -230,7 +230,7 @@ nav{
     right:800px;   /* antes tenía right:-16px; */
     bottom:0;
     z-index:2;
-    width:min(620px, 78vw);
+    width:min(620px, 85vw);
 }
 
 .section{
@@ -444,6 +444,14 @@ nav{
         font-size:390px;
         bottom:28px;
     }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(8px); }
+}
+
+.hero-image img {
+    animation: fadeIn 1.2s ease forwards;
 }
 </style>
 </head>

@@ -332,16 +332,17 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 <script>
 const intro = document.getElementById("siteIntro");
 window.addEventListener("load", () => {
-    window.setTimeout(() => intro.classList.add("is-hidden"), 2600);
+    setTimeout(() => intro.classList.add("is-hidden"), 2600);
 });
 
 const counters = document.querySelectorAll("[data-count]");
 const animateCounter = (counter) => {
     const target = Number(counter.dataset.count);
     const duration = 850;
-    const start = performance.now();
+    const start = Date.now();
 
-    const tick = (now) => {
+    const tick = () => {
+        const now = Date.now();
         const progress = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
         counter.textContent = `+${Math.round(target * eased)}`;
@@ -362,8 +363,12 @@ const counterObserver = new IntersectionObserver((entries, observer) => {
 // Observe counters and trigger animation if already visible
 window.addEventListener("DOMContentLoaded", () => {
     counters.forEach((counter) => {
-        animateCounter(counter);
-        counterObserver.observe(counter);
+        const rect = counter.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            animateCounter(counter);
+        } else {
+            counterObserver.observe(counter);
+        }
     });
 });
 

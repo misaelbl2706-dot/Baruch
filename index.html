@@ -41,6 +41,23 @@ body::before{
     background-size:88px 88px;
     mask-image:linear-gradient(to bottom, rgba(0,0,0,.4), transparent 70%);
 }
+.site-intro{
+    position:fixed;
+    inset:0;
+    z-index:50;
+    display:grid;
+    place-items:center;
+    background:#05040d;
+    animation:introExit .7s ease forwards 1.9s;
+}
+.intro-logo{
+    width:min(190px, 42vw);
+    filter:drop-shadow(0 24px 70px rgba(99,56,255,.45));
+    animation:introLogo 1.4s ease both;
+}
+.site-intro.is-hidden{
+    display:none;
+}
 .container{ width:min(1180px, calc(100% - 40px)); margin:auto; position:relative; z-index:1; }
 nav{ min-height:92px; display:flex; justify-content:space-between; align-items:center; gap:28px; }
 .logo{ display:flex; align-items:center; gap:12px; color:white; font-weight:800; letter-spacing:.08em; text-decoration:none; }
@@ -73,66 +90,43 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 }
 .hero-left{ padding-bottom:36px; position:relative; z-index:3; }
 .hero-small{ margin-bottom:26px; color:var(--purple-bright); font-size:13px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; }
-.hero-title{ max-width:530px; margin-bottom:28px; font-family:'Anton',Impact,'Arial Black',sans-serif; font-size:clamp(66px, 8vw, 116px); line-height:.92; font-weight:400; text-transform:uppercase; text-wrap:balance; }
+.hero-title-wrap{ position:relative; width:max-content; max-width:100%; margin-bottom:28px; }
+.hero-title{ position:relative; z-index:1; max-width:530px; font-family:'Anton',Impact,'Arial Black',sans-serif; font-size:clamp(66px, 8vw, 116px); line-height:.92; font-weight:400; text-transform:uppercase; text-wrap:balance; }
 .hero-title span{ display:block; color:var(--purple-bright); text-shadow:0 0 34px rgba(99,56,255,.28); }
+.hero-resource{
+    position:absolute;
+    right:-28px;
+    bottom:20px;
+    width:clamp(300px, 34vw, 520px);
+    height:auto;
+    z-index:2;
+    opacity:.96;
+    filter:drop-shadow(0 30px 78px rgba(99,56,255,.42));
+    transform-origin:center;
+    animation:resourceReveal .8s ease-out both .35s, resourcePulse 5.6s ease-in-out infinite 1.2s;
+}
 .hero-text{ max-width:460px; margin-bottom:34px; color:var(--muted); line-height:1.7; font-size:16px; }
 .hero-buttons{ display:flex; gap:14px; flex-wrap:wrap; }
+.hero-stats{ display:grid; grid-template-columns:repeat(2, minmax(0, 180px)); gap:14px; margin:0 0 28px; }
+.stat{ padding:16px 18px; border:1px solid rgba(255,255,255,.12); border-radius:8px; background:rgba(255,255,255,.045); animation:statIn .8s ease both; }
+.stat:nth-child(2){ animation-delay:.12s; }
+.stat strong{ display:block; margin-bottom:4px; color:white; font-family:'Anton',Impact,sans-serif; font-size:clamp(34px, 4vw, 48px); line-height:1; font-weight:400; }
+.stat span{ color:var(--muted); font-size:12px; font-weight:800; line-height:1.35; text-transform:uppercase; }
 .hero-right{ min-height:640px; position:relative; align-self:end; }
 
-.big-b{
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:22px;
-    z-index:1;
-    display:flex;
-    justify-content:center;
-}
-.hero-resource{
-    height:clamp(440px, 44vw, 680px);
-    width:auto;
-    display:block;
-    filter:drop-shadow(0 28px 70px rgba(99,56,255,.34));
-    animation:resourceReveal .9s ease-out both, resourcePulse 5.6s ease-in-out infinite .9s;
-    transform-origin:center;
+@keyframes introLogo{
+    0%{ opacity:0; transform:scale(.82) translateY(18px); }
+    45%{ opacity:1; transform:scale(1.04) translateY(0); }
+    100%{ opacity:1; transform:scale(1); }
 }
 
-.hero-image{
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    bottom:0;
-    z-index:2;
-    width:min(660px, 88vw);
-}
-.hero-image img{
-    width:100%;
-    display:block;
-    filter:grayscale(100%) contrast(1.12) brightness(.94) drop-shadow(0 36px 70px rgba(0,0,0,.65));
-    animation:fadeIn 1.2s ease forwards, float 4.5s ease-in-out infinite 1.2s;
-}
-.hero-image::after{
-    content:"";
-    position:absolute;
-    left:6%; right:8%; bottom:0;
-    height:38%;
-    background:linear-gradient(to top, rgba(1,1,6,.82), transparent);
-    pointer-events:none;
-}
-
-@keyframes fadeIn{
-    from{ opacity:0; transform:translateY(20px); }
-    to{ opacity:1; transform:translateY(8px); }
-}
-
-@keyframes float{
-    0%, 100%{ transform:translateY(0); }
-    50%{ transform:translateY(-16px); }
+@keyframes introExit{
+    to{ opacity:0; visibility:hidden; }
 }
 
 @keyframes resourceReveal{
-    from{ opacity:0; transform:scale(.88) rotate(-4deg); }
-    to{ opacity:1; transform:scale(1) rotate(0); }
+    from{ opacity:0; transform:translateY(16px) scale(.82) rotate(-4deg); }
+    to{ opacity:.92; transform:translateY(0) scale(1) rotate(0); }
 }
 
 @keyframes resourcePulse{
@@ -141,7 +135,7 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
         filter:drop-shadow(0 28px 70px rgba(99,56,255,.34));
     }
     45%{
-        transform:translateY(-18px) scale(1.035) rotate(-1.5deg);
+        transform:translateY(-12px) scale(1.035) rotate(-1.5deg);
         filter:drop-shadow(0 38px 86px rgba(99,56,255,.5));
     }
     70%{
@@ -149,9 +143,16 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
     }
 }
 
+@keyframes statIn{
+    from{ opacity:0; transform:translateY(12px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
 @media(prefers-reduced-motion:reduce){
+    .site-intro,
+    .intro-logo,
     .hero-resource,
-    .hero-image img{
+    .stat{
         animation:none;
     }
 }
@@ -162,7 +163,7 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 .section-title{ font-family:'Anton',Impact,'Arial Black',sans-serif; font-size:clamp(44px, 5vw, 72px); line-height:.98; font-weight:400; text-transform:uppercase; }
 .section-title span{ color:var(--purple-bright); }
 
-.cards{ display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:18px; }
+.cards{ display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:18px; }
 .card{ display:block; min-height:210px; padding:24px; border:1px solid rgba(255,255,255,.12); border-radius:8px; background:linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.025)); text-decoration:none; transition:.25s; }
 .card:hover{ border-color:rgba(255,255,255,.26); transform:translateY(-4px); }
 .card h3{ margin-bottom:14px; color:white; font-size:18px; font-weight:800; text-transform:uppercase; }
@@ -172,7 +173,6 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 .project{ min-height:280px; overflow:hidden; border-radius:8px; border:1px solid rgba(255,255,255,.12); background:#0b0820; }
 .project img{ width:100%; height:100%; min-height:280px; display:block; object-fit:cover; filter:grayscale(100%) contrast(1.06); transition:.3s; }
 .project:hover img{ filter:grayscale(0%) contrast(1.05); transform:scale(1.04); }
-
 .about-block, .contact-block{ display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:center; }
 .about-block p, .contact-block p{ color:var(--muted); line-height:1.75; }
 .contact-panel{ padding:30px; border-radius:8px; border:1px solid rgba(255,255,255,.14); background:rgba(74,37,232,.18); }
@@ -185,9 +185,10 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
     .hero-left{ padding-bottom:0; }
     .hero-text{ margin-left:auto; margin-right:auto; }
     .hero-buttons{ justify-content:center; }
+    .hero-title-wrap{ margin-left:auto; margin-right:auto; }
+    .hero-resource{ right:8%; bottom:36px; width:min(360px, 86vw); opacity:.86; }
+    .hero-stats{ justify-content:center; margin-left:auto; margin-right:auto; }
     .hero-right{ min-height:500px; overflow:hidden; }
-    .big-b{ left:0; right:0; bottom:34px; justify-content:center; }
-    .hero-image{ left:50%; right:auto; transform:translateX(-50%); width:min(480px, 90vw); }
     .cards, .project-grid, .about-block, .contact-block{ grid-template-columns:1fr; }
 }
 @media(max-width:620px){
@@ -195,12 +196,17 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
     nav .btn{ display:none; }
     .menu a{ font-size:12px; }
     .hero-title{ font-size:clamp(56px, 18vw, 84px); }
+    .hero-stats{ grid-template-columns:1fr; }
     .hero-right{ min-height:420px; }
 }
 </style>
 </head>
 
 <body>
+<div class="site-intro" id="siteIntro" aria-hidden="true">
+    <img class="intro-logo" src="multimedia/ISOTIPO BARUCH!.png" alt="">
+</div>
+
 <div class="container">
     <nav>
         <a href="index.html#inicio" class="logo">
@@ -220,14 +226,26 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
     <section class="hero" id="inicio">
         <div class="hero-left">
             <div class="hero-small">Somos Baruch</div>
-            <h1 class="hero-title">
-                Hacemos
-                <span>que pase.</span>
-                En serio.
-            </h1>
+            <div class="hero-title-wrap">
+                <h1 class="hero-title">
+                    Hacemos
+                    <span>que pase.</span>
+                    En serio.
+                </h1>
+            </div>
             <p class="hero-text">
-                Creamos estrategias, contenido y experiencias digitales que convierten ideas en marcas memorables.
+                Somos jovenes cristianos amantes del arte y sus vinculos con la fotografia, el branding y la publicidad, creando contenido significativo, exclusivo y adaptado a la esencia de cada marca.
             </p>
+            <div class="hero-stats" aria-label="Indicadores de Baruch">
+                <div class="stat">
+                    <strong data-count="6">+0</strong>
+                    <span>anos de experiencia</span>
+                </div>
+                <div class="stat">
+                    <strong data-count="15">+0</strong>
+                    <span>marcas trabajadas</span>
+                </div>
+            </div>
             <div class="hero-buttons">
                 <a href="pagjavasscrio.html" class="btn">Agenda una reunion</a>
                 <a href="light.html#videos" class="btn-secondary">Ver portafolio</a>
@@ -235,12 +253,7 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
         </div>
 
         <div class="hero-right" aria-hidden="true">
-            <div class="big-b">
-                <img class="hero-resource" src="multimedia/RECURSO - BARUCH1.png" alt="">
-            </div>
-            <div class="hero-image">
-                <img src="multimedia/MISA RECURSO.png" alt="">
-            </div>
+            <img class="hero-resource" src="multimedia/RECURSO - BARUCH1.png" alt="">
         </div>
     </section>
 
@@ -250,37 +263,40 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
             <h2 class="section-title">Ideas que se ven <span>fuertes.</span></h2>
         </div>
         <div class="cards">
-            <a class="card" href="pagjavasscrio.html">
-                <h3>Branding</h3>
-                <p>Construimos identidades visuales con concepto, estilo y una presencia clara para tu marca.</p>
+            <a class="card" href="light.html#piezas-graficas">
+                <h3>Diseno Grafico</h3>
+                <p>Desarrollamos piezas visuales para redes, campanas y lanzamientos con direccion clara.</p>
             </a>
             <a class="card" href="light.html#videos">
-                <h3>Contenido</h3>
-                <p>Diseñamos piezas para redes, campanas y lanzamientos con una direccion visual consistente.</p>
+                <h3>Fotografia</h3>
+                <p>Capturamos imagenes con intencion, estetica y narrativa para marcas y personas.</p>
             </a>
-            <a class="card" href="pagjavasscrio.html">
-                <h3>Estrategia</h3>
-                <p>Ordenamos tus ideas para que cada publicacion, pieza y accion tenga una intencion real.</p>
+            <a class="card" href="light.html#videos">
+                <h3>Audiovisual</h3>
+                <p>Producimos contenido en movimiento para comunicar ideas con ritmo y personalidad.</p>
+            </a>
+            <a class="card" href="light.html#branding">
+                <h3>Branding</h3>
+                <p>Construimos identidades visuales con concepto, estilo y presencia para tu marca.</p>
             </a>
         </div>
     </section>
-
     <section class="section" id="proyectos">
         <div class="section-header">
             <div class="section-kicker">Proyectos</div>
             <h2 class="section-title">Trabajos con <span>personalidad.</span></h2>
         </div>
         <div class="project-grid">
-            <a class="project" href="light.html#disenos" aria-label="Ver portafolio">
+            <a class="project" href="light.html#piezas-graficas" aria-label="Ver portafolio">
                 <img src="multimedia/karina.png" alt="Proyecto Karina">
             </a>
-            <a class="project" href="light.html#disenos" aria-label="Ver portafolio">
+            <a class="project" href="light.html#piezas-graficas" aria-label="Ver portafolio">
                 <img src="multimedia/DOMI.png" alt="Proyecto Domi">
             </a>
-            <a class="project" href="light.html#disenos" aria-label="Ver portafolio">
+            <a class="project" href="light.html#piezas-graficas" aria-label="Ver portafolio">
                 <img src="multimedia/tambo.png" alt="Proyecto Tambo">
             </a>
-            <a class="project" href="light.html#disenos" aria-label="Ver portafolio">
+            <a class="project" href="light.html#piezas-graficas" aria-label="Ver portafolio">
                 <img src="multimedia/BELEN.png" alt="Proyecto Belen">
             </a>
         </div>
@@ -292,10 +308,7 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
                 <div class="section-kicker">Nosotros</div>
                 <h2 class="section-title">Creamos con <span>intencion.</span></h2>
             </div>
-            <p>
-                En Baruch trabajamos marcas, contenido y experiencias digitales desde una mirada creativa y cercana.
-                Nuestro enfoque es simple: que cada proyecto tenga una idea clara, se vea profesional y conecte con la gente correcta.
-            </p>
+            <p>Somos jovenes cristianos amantes del arte y sus vinculos con la fotografia, el branding y la publicidad, creando contenido significativo, exclusivo y adaptado a la esencia de cada marca.</p>
         </div>
     </section>
 
@@ -314,5 +327,39 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
         </div>
     </section>
 </div>
+<script>
+const intro = document.getElementById("siteIntro");
+window.addEventListener("load", () => {
+    window.setTimeout(() => intro.classList.add("is-hidden"), 2600);
+});
+
+const counters = document.querySelectorAll("[data-count]");
+const animateCounter = (counter) => {
+    const target = Number(counter.dataset.count);
+    const duration = 850;
+    const start = performance.now();
+    counter.textContent = "+0";
+
+    const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        counter.textContent = `+${Math.round(target * eased)}`;
+        if (progress < 1) requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+};
+
+const counterObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+    });
+}, { threshold:.5 });
+
+counters.forEach((counter) => counterObserver.observe(counter));
+
+</script>
 </body>
 </html>

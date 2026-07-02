@@ -54,23 +54,23 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 .btn-secondary{ border:1px solid rgba(255,255,255,.28); background:rgba(255,255,255,.04); }
 
 .portfolio-hero{
-    min-height:420px;
+    min-height:460px;
     display:grid;
     grid-template-columns:minmax(280px,.95fr) minmax(320px,1.05fr);
     align-items:center;
-    gap:32px;
-    padding:58px 0 36px;
+    gap:64px;
+    padding:72px 0 64px;
 }
 .hero-small{ margin-bottom:22px; color:var(--purple-bright); font-size:13px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; }
 .hero-title{ max-width:600px; margin-bottom:24px; font-family:'Anton',Impact,'Arial Black',sans-serif; font-size:clamp(60px, 7vw, 104px); line-height:.92; font-weight:400; text-transform:uppercase; }
 .hero-title span{ display:block; color:var(--purple-bright); text-shadow:0 0 34px rgba(99,56,255,.28); }
 .hero-text{ max-width:500px; margin-bottom:30px; color:var(--muted); line-height:1.7; font-size:16px; }
 .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
-.hero-panel{ min-height:320px; position:relative; overflow:hidden; border:1px solid rgba(255,255,255,.12); border-radius:8px; background:#0b0820; }
+.hero-panel{ min-height:320px; position:relative; overflow:hidden; border:1px solid rgba(255,255,255,.12); border-radius:8px; background:#0b0820; margin-top:18px; }
 .hero-panel iframe{ width:100%; height:100%; min-height:320px; aspect-ratio:16/9; display:block; border:none; }
 .hero-panel::after{ content:"PORTAFOLIO"; position:absolute; right:18px; bottom:14px; color:rgba(255,255,255,.16); font-family:'Anton',Impact,sans-serif; font-size:clamp(54px, 7vw, 94px); line-height:1; pointer-events:none; }
 
-.section{ padding:70px 0 96px; }
+.section{ padding:82px 0 104px; scroll-margin-top:24px; }
 .section-header{ max-width:720px; margin-bottom:34px; }
 .section-kicker{ margin-bottom:12px; color:var(--purple-bright); font-size:12px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; }
 .section-title{ font-family:'Anton',Impact,'Arial Black',sans-serif; font-size:clamp(44px, 5vw, 72px); line-height:.98; font-weight:400; text-transform:uppercase; }
@@ -79,9 +79,14 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 .portfolio-tabs{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:34px; }
 .portfolio-tabs a{ display:inline-flex; align-items:center; justify-content:center; min-height:42px; padding:0 16px; border:1px solid rgba(255,255,255,.16); border-radius:6px; color:white; text-decoration:none; font-size:12px; font-weight:800; text-transform:uppercase; background:rgba(255,255,255,.04); }
 
-.video-grid{ display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:16px; }
-.video-card{ overflow:hidden; border:1px solid rgba(255,255,255,.12); border-radius:8px; background:#0b0820; }
-.video-card iframe{ width:100%; aspect-ratio:9/16; display:block; border:none; background:#05040d; }
+.carousel-controls{ display:flex; justify-content:flex-end; gap:10px; margin:-58px 0 22px; }
+.carousel-btn{ width:42px; height:42px; border:1px solid rgba(255,255,255,.18); border-radius:6px; background:rgba(255,255,255,.05); color:white; font-size:22px; cursor:pointer; }
+.video-grid{ display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; padding:4px 0 18px; }
+.video-grid::-webkit-scrollbar{ height:8px; }
+.video-grid::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.18); border-radius:999px; }
+.video-card{ flex:0 0 min(280px, 78vw); overflow:hidden; border:1px solid rgba(255,255,255,.12); border-radius:8px; background:#0b0820; scroll-snap-align:start; }
+.video-card iframe,
+.video-card video{ width:100%; aspect-ratio:9/16; display:block; border:none; background:#05040d; object-fit:cover; }
 .video-info{ padding:18px; }
 .video-info h3{ margin-bottom:8px; color:white; font-size:16px; font-weight:800; text-transform:uppercase; }
 .video-info p{ color:var(--muted); font-size:14px; line-height:1.55; }
@@ -90,6 +95,29 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 .gallery-item{ min-height:290px; padding:0; overflow:hidden; border:1px solid rgba(255,255,255,.12); border-radius:8px; background:#0b0820; appearance:none; font:inherit; text-align:left; cursor:pointer; }
 .gallery-item img{ width:100%; height:100%; min-height:290px; display:block; object-fit:cover; filter:grayscale(100%) contrast(1.06); transition:.3s; }
 .gallery-item:hover img{ filter:grayscale(0%) contrast(1.05); transform:scale(1.04); }
+.piece-grid{ display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:14px; }
+.piece-grid .gallery-item{ aspect-ratio:4/5; min-height:auto; }
+.story-grid{ display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:14px; }
+.story-grid .gallery-item{ aspect-ratio:9/16; min-height:auto; }
+.piece-grid .gallery-item img,
+.story-item img{ min-height:100%; }
+.brand-grid{ display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:16px; }
+.brand-logo{ display:grid; place-items:center; min-height:180px; padding:24px; border:1px solid rgba(255,255,255,.12); border-radius:8px; background:rgba(255,255,255,.045); opacity:0; transform:translateY(18px) scale(.96); }
+.brand-logo.is-visible{ animation:brandIn .75s ease both; }
+.brand-logo:nth-child(2){ animation-delay:.1s; }
+.brand-logo:nth-child(3){ animation-delay:.2s; }
+.brand-logo:nth-child(4){ animation-delay:.3s; }
+.brand-logo img{ max-width:100%; max-height:132px; object-fit:contain; filter:grayscale(100%) contrast(1.05); transition:.3s; }
+.brand-logo:hover img{ filter:grayscale(0%) contrast(1.05); transform:scale(1.04); }
+
+@keyframes brandIn{
+    from{ opacity:0; transform:translateY(18px) scale(.96); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .brand-logo{ opacity:1; transform:none; animation:none; }
+}
 
 footer{ padding:34px 0 46px; color:var(--muted); font-size:13px; font-weight:700; text-transform:uppercase; }
 
@@ -99,15 +127,16 @@ footer{ padding:34px 0 46px; color:var(--muted); font-size:13px; font-weight:700
     .portfolio-hero{ grid-template-columns:1fr; text-align:center; }
     .hero-text{ margin-left:auto; margin-right:auto; }
     .hero-actions{ justify-content:center; }
-    .video-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
-    .gallery-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .carousel-controls{ justify-content:center; margin:0 0 22px; }
+    .gallery-grid, .piece-grid, .brand-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .story-grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
 }
 @media(max-width:620px){
     .container{ width:min(100% - 28px, 1180px); }
     nav .btn{ display:none; }
     .menu a{ font-size:12px; }
     .hero-title{ font-size:clamp(54px, 17vw, 80px); }
-    .video-grid, .gallery-grid{ grid-template-columns:1fr; }
+    .gallery-grid, .piece-grid, .story-grid, .brand-grid{ grid-template-columns:1fr; }
 }
 </style>
 </head>
@@ -142,7 +171,8 @@ footer{ padding:34px 0 46px; color:var(--muted); font-size:13px; font-weight:700
                 </p>
                 <div class="hero-actions">
                     <a href="#videos" class="btn">Ver videos</a>
-                    <a href="#disenos" class="btn-secondary">Ver disenos</a>
+                    <a href="#piezas-graficas" class="btn-secondary">Piezas graficas</a>
+                    <a href="#stories" class="btn-secondary">Stories</a>
                     <a href="index.html#inicio" class="btn-secondary">Volver al inicio</a>
                 </div>
             </div>
@@ -164,7 +194,13 @@ footer{ padding:34px 0 46px; color:var(--muted); font-size:13px; font-weight:700
 
             <div class="portfolio-tabs">
                 <a href="#videos">Videos</a>
-                <a href="#disenos">Disenos graficos</a>
+                <a href="#piezas-graficas">Piezas graficas</a>
+                <a href="#stories">Stories</a>
+            </div>
+
+            <div class="carousel-controls" aria-label="Controles de videos">
+                <button class="carousel-btn" type="button" data-scroll-videos="-1" aria-label="Videos anteriores">&#8249;</button>
+                <button class="carousel-btn" type="button" data-scroll-videos="1" aria-label="Videos siguientes">&#8250;</button>
             </div>
 
             <div class="video-grid">
@@ -181,29 +217,23 @@ footer{ padding:34px 0 46px; color:var(--muted); font-size:13px; font-weight:700
                     </div>
                 </article>
 
-                <!-- VIDEO 2: Lambora — reemplaza ID_LAMBORA con el ID del video de YouTube -->
                 <article class="video-card">
-                    <iframe
-                        src="https://www.youtube.com/embed/ID_LAMBORA?autoplay=1&mute=1&loop=1&playlist=ID_LAMBORA&controls=0&playsinline=1"
-                        allow="autoplay; encrypted-media"
-                        allowfullscreen>
-                    </iframe>
+                    <video src="multimedia/LAMBORA_X_FATHER.mp4" autoplay muted loop playsinline></video>
                     <div class="video-info">
                         <h3>Lambora</h3>
                         <p>Pieza audiovisual para campana de Dia del Padre.</p>
                     </div>
                 </article>
 
-                <!-- VIDEO 3: Subuz — reemplaza ID_SUBUZ con el ID del video de YouTube -->
                 <article class="video-card">
                     <iframe
-                        src="https://www.youtube.com/embed/ID_SUBUZ?autoplay=1&mute=1&loop=1&playlist=ID_SUBUZ&controls=0&playsinline=1"
+                        src="https://www.youtube.com/embed/Ua5qcs7RHiY?autoplay=1&mute=1&loop=1&playlist=Ua5qcs7RHiY&controls=0&playsinline=1"
                         allow="autoplay; encrypted-media"
                         allowfullscreen>
                     </iframe>
                     <div class="video-info">
-                        <h3>Subuz</h3>
-                        <p>Video vertical para activacion y contenido de campeonato.</p>
+                        <h3>Baruch Reel</h3>
+                        <p>Video destacado de portafolio y direccion visual.</p>
                     </div>
                 </article>
 
@@ -222,18 +252,19 @@ footer{ padding:34px 0 46px; color:var(--muted); font-size:13px; font-weight:700
             </div>
         </section>
 
-        <section class="section" id="disenos">
+        <section class="section" id="piezas-graficas">
             <div class="section-header">
-                <div class="section-kicker">Disenos graficos</div>
+                <div class="section-kicker">1080 x 1350 px</div>
                 <h2 class="section-title">Piezas que se <span>recuerdan.</span></h2>
             </div>
 
             <div class="portfolio-tabs">
                 <a href="#videos">Videos</a>
-                <a href="#disenos">Disenos graficos</a>
+                <a href="#piezas-graficas">Piezas graficas</a>
+                <a href="#stories">Stories</a>
             </div>
 
-            <div class="gallery-grid">
+            <div class="gallery-grid piece-grid">
                 <button class="gallery-item cursor" onclick="openModal();currentSlide(1)" aria-label="Ver proyecto Karina">
                     <img src="multimedia/karina.png" alt="Proyecto Karina">
                 </button>
@@ -260,6 +291,59 @@ footer{ padding:34px 0 46px; color:var(--muted); font-size:13px; font-weight:700
                 </button>
             </div>
         </section>
+
+        <section class="section" id="stories">
+            <div class="section-header">
+                <div class="section-kicker">1080 x 1920 px</div>
+                <h2 class="section-title">Stories con <span>ritmo.</span></h2>
+            </div>
+
+            <div class="portfolio-tabs">
+                <a href="#videos">Videos</a>
+                <a href="#piezas-graficas">Piezas graficas</a>
+                <a href="#stories">Stories</a>
+            </div>
+
+            <div class="gallery-grid story-grid">
+                <button class="gallery-item story-item cursor" onclick="openModal();currentSlide(9)" aria-label="Ver story Stores">
+                    <img src="multimedia/Stores.png" alt="Story Stores">
+                </button>
+                <button class="gallery-item story-item cursor" onclick="openModal();currentSlide(10)" aria-label="Ver story Store 1">
+                    <img src="multimedia/store 1.png" alt="Story Store 1">
+                </button>
+                <button class="gallery-item story-item cursor" onclick="openModal();currentSlide(11)" aria-label="Ver story Matfisio">
+                    <img src="multimedia/Matfisio.png" alt="Story Matfisio">
+                </button>
+                <button class="gallery-item story-item cursor" onclick="openModal();currentSlide(12)" aria-label="Ver story Parrilla">
+                    <img src="multimedia/PARRILLA.png" alt="Story Parrilla">
+                </button>
+                <button class="gallery-item story-item cursor" onclick="openModal();currentSlide(13)" aria-label="Ver story Tambo">
+                    <img src="multimedia/tambo_1.png" alt="Story Tambo">
+                </button>
+            </div>
+        </section>
+
+        <section class="section" id="branding">
+            <div class="section-header">
+                <div class="section-kicker">Branding</div>
+                <h2 class="section-title">Logotipos con <span>presencia.</span></h2>
+            </div>
+
+            <div class="brand-grid">
+                <a class="brand-logo" href="#piezas-graficas" aria-label="Ver branding RFA">
+                    <img src="multimedia/RFA.png" alt="Logo RFA">
+                </a>
+                <a class="brand-logo" href="#piezas-graficas" aria-label="Ver branding Baruch">
+                    <img src="multimedia/BARUCH LOGO - 3D.jpg" alt="Logo Baruch">
+                </a>
+                <a class="brand-logo" href="#piezas-graficas" aria-label="Ver branding Domi">
+                    <img src="multimedia/DOMI.png" alt="Logo Domi">
+                </a>
+                <a class="brand-logo" href="#piezas-graficas" aria-label="Ver branding Belen">
+                    <img src="multimedia/BELEN.png" alt="Logo Belen">
+                </a>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -278,6 +362,11 @@ footer{ padding:34px 0 46px; color:var(--muted); font-size:13px; font-weight:700
         <div class="mySlides"><img src="multimedia/MIURA TRAGO.png" style="width:100%" alt="Proyecto Miura Trago"></div>
         <div class="mySlides"><img src="multimedia/TRAGO.png" style="width:100%" alt="Proyecto Trago"></div>
         <div class="mySlides"><img src="multimedia/CEVICHEE.png" style="width:100%" alt="Proyecto Ceviche"></div>
+        <div class="mySlides"><img src="multimedia/Stores.png" style="width:100%" alt="Story Stores"></div>
+        <div class="mySlides"><img src="multimedia/store 1.png" style="width:100%" alt="Story Store 1"></div>
+        <div class="mySlides"><img src="multimedia/Matfisio.png" style="width:100%" alt="Story Matfisio"></div>
+        <div class="mySlides"><img src="multimedia/PARRILLA.png" style="width:100%" alt="Story Parrilla"></div>
+        <div class="mySlides"><img src="multimedia/tambo_1.png" style="width:100%" alt="Story Tambo"></div>
 
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -293,10 +382,34 @@ footer{ padding:34px 0 46px; color:var(--muted); font-size:13px; font-weight:700
             <img class="demo cursor" src="multimedia/MIURA TRAGO.png" onclick="currentSlide(6)" alt="Proyecto Miura Trago">
             <img class="demo cursor" src="multimedia/TRAGO.png" onclick="currentSlide(7)" alt="Proyecto Trago">
             <img class="demo cursor" src="multimedia/CEVICHEE.png" onclick="currentSlide(8)" alt="Proyecto Ceviche">
+            <img class="demo cursor" src="multimedia/Stores.png" onclick="currentSlide(9)" alt="Story Stores">
+            <img class="demo cursor" src="multimedia/store 1.png" onclick="currentSlide(10)" alt="Story Store 1">
+            <img class="demo cursor" src="multimedia/Matfisio.png" onclick="currentSlide(11)" alt="Story Matfisio">
+            <img class="demo cursor" src="multimedia/PARRILLA.png" onclick="currentSlide(12)" alt="Story Parrilla">
+            <img class="demo cursor" src="multimedia/tambo_1.png" onclick="currentSlide(13)" alt="Story Tambo">
         </div>
     </div>
 </div>
 
 <script src="lightbox.js"></script>
+<script>
+const videoCarousel = document.querySelector(".video-grid");
+document.querySelectorAll("[data-scroll-videos]").forEach((button) => {
+    button.addEventListener("click", () => {
+        const direction = Number(button.dataset.scrollVideos);
+        videoCarousel.scrollBy({ left: direction * 320, behavior: "smooth" });
+    });
+});
+
+const brandObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+    });
+}, { threshold:.25 });
+
+document.querySelectorAll(".brand-logo").forEach((logo) => brandObserver.observe(logo));
+</script>
 </body>
 </html>

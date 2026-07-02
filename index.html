@@ -88,6 +88,14 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
     display:flex;
     justify-content:center;
 }
+.hero-resource{
+    height:clamp(440px, 44vw, 680px);
+    width:auto;
+    display:block;
+    filter:drop-shadow(0 28px 70px rgba(99,56,255,.34));
+    animation:resourceReveal .9s ease-out both, resourcePulse 5.6s ease-in-out infinite .9s;
+    transform-origin:center;
+}
 
 .hero-image{
     position:absolute;
@@ -113,13 +121,39 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 }
 
 @keyframes fadeIn{
-    from{ opacity:0; transform:translateX(-50%) translateY(20px); }
-    to{ opacity:1; transform:translateX(-50%) translateY(8px); }
+    from{ opacity:0; transform:translateY(20px); }
+    to{ opacity:1; transform:translateY(8px); }
 }
 
 @keyframes float{
     0%, 100%{ transform:translateY(0); }
     50%{ transform:translateY(-16px); }
+}
+
+@keyframes resourceReveal{
+    from{ opacity:0; transform:scale(.88) rotate(-4deg); }
+    to{ opacity:1; transform:scale(1) rotate(0); }
+}
+
+@keyframes resourcePulse{
+    0%, 100%{
+        transform:translateY(0) scale(1) rotate(0);
+        filter:drop-shadow(0 28px 70px rgba(99,56,255,.34));
+    }
+    45%{
+        transform:translateY(-18px) scale(1.035) rotate(-1.5deg);
+        filter:drop-shadow(0 38px 86px rgba(99,56,255,.5));
+    }
+    70%{
+        transform:translateY(-7px) scale(1.01) rotate(1deg);
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .hero-resource,
+    .hero-image img{
+        animation:none;
+    }
 }
 
 .section{ padding:92px 0; scroll-margin-top:24px; }
@@ -169,15 +203,15 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 <body>
 <div class="container">
     <nav>
-        <a href="#inicio" class="logo">
+        <a href="index.html#inicio" class="logo">
             <img src="multimedia/ISOTIPO BARUCH!.png" alt="Baruch Agency" class="logo-mark">
             <span>BARUCH</span>
         </a>
         <div class="menu">
-            <a href="#inicio">Inicio</a>
-            <a href="#servicios">Servicios</a>
+            <a href="index.html#inicio">Inicio</a>
+            <a href="index.html#servicios">Servicios</a>
             <a href="light.html">Portafolio</a>
-            <a href="#nosotros">Nosotros</a>
+            <a href="index.html#nosotros">Nosotros</a>
             <a href="pagjavasscrio.html">Contacto</a>
         </div>
         <a href="pagjavasscrio.html" class="btn">Agenda una reunion</a>
@@ -202,10 +236,10 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 
         <div class="hero-right" aria-hidden="true">
             <div class="big-b">
-                <img src="multimedia/RECURSO - BARUCH1.png" alt="" style="height:clamp(440px, 44vw, 680px); width:auto; display:block;">
+                <img class="hero-resource" src="multimedia/RECURSO - BARUCH1.png" alt="">
             </div>
             <div class="hero-image">
-                <img src="multimedia/MISA.png" alt="">
+                <img src="multimedia/MISA RECURSO.png" alt="">
             </div>
         </div>
     </section>
@@ -273,6 +307,7 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
             </div>
             <div class="contact-panel">
                 <p>Agenda una reunion o escribenos para conversar sobre tu proximo proyecto.</p>
+                <a href="pagjavasscrio.html">Ir al formulario de contacto</a>
                 <a href="mailto:hi@lodemisa.pe">hi@lodemisa.pe</a>
                 <a href="tel:+51933200817">933 200 817</a>
             </div>

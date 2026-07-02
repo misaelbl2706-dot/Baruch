@@ -81,17 +81,21 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 
 .big-b{
     position:absolute;
-    right:-60px;
+    left:0;
+    right:0;
     bottom:22px;
     z-index:1;
+    display:flex;
+    justify-content:center;
 }
 
 .hero-image{
     position:absolute;
-    right:-16px;
+    left:50%;
+    transform:translateX(-50%);
     bottom:0;
     z-index:2;
-    width:min(620px, 85vw);
+    width:min(580px, 85vw);
 }
 .hero-image img{
     width:100%;
@@ -109,8 +113,8 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 }
 
 @keyframes fadeIn{
-    from{ opacity:0; transform:translateY(20px); }
-    to{ opacity:1; transform:translateY(8px); }
+    from{ opacity:0; transform:translateX(-50%) translateY(20px); }
+    to{ opacity:1; transform:translateX(-50%) translateY(8px); }
 }
 
 .section{ padding:92px 0; scroll-margin-top:24px; }
@@ -143,7 +147,7 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
     .hero-text{ margin-left:auto; margin-right:auto; }
     .hero-buttons{ justify-content:center; }
     .hero-right{ min-height:500px; overflow:hidden; }
-    .big-b{ right:50%; bottom:34px; transform:translateX(50%); }
+    .big-b{ left:0; right:0; bottom:34px; justify-content:center; }
     .hero-image{ left:50%; right:auto; transform:translateX(-50%); width:min(430px, 88vw); }
     .cards, .project-grid, .about-block, .contact-block{ grid-template-columns:1fr; }
 }
@@ -153,7 +157,6 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
     .menu a{ font-size:12px; }
     .hero-title{ font-size:clamp(56px, 18vw, 84px); }
     .hero-right{ min-height:420px; }
-    .big-b{ font-size:390px; bottom:28px; }
 }
 </style>
 </head>

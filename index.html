@@ -97,7 +97,7 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 .hero-resource{
     position:absolute;
     right:-120px;
-    top:-140px;
+    top:-190px;
     bottom:36px;
     width:clamp(500px, 60vw, 920px);
     height:auto;
@@ -331,14 +331,11 @@ nav{ min-height:92px; display:flex; justify-content:space-between; align-items:c
 </div>
 <script>
 const intro = document.getElementById("siteIntro");
-window.addEventListener("load", () => {
-    setTimeout(() => intro.classList.add("is-hidden"), 2600);
-});
-
 const counters = document.querySelectorAll("[data-count]");
+
 const animateCounter = (counter) => {
     const target = Number(counter.dataset.count);
-    const duration = 850;
+    const duration = 1200;
     const start = Date.now();
 
     const tick = () => {
@@ -360,18 +357,20 @@ const counterObserver = new IntersectionObserver((entries, observer) => {
     });
 }, { threshold:.5 });
 
-// Observe counters and trigger animation if already visible
-window.addEventListener("DOMContentLoaded", () => {
-    counters.forEach((counter) => {
-        const rect = counter.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            animateCounter(counter);
-        } else {
-            counterObserver.observe(counter);
-        }
-    });
-});
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        intro.classList.add("is-hidden");
 
+        counters.forEach((counter) => {
+            const rect = counter.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                animateCounter(counter);
+            } else {
+                counterObserver.observe(counter);
+            }
+        });
+    }, 2600);
+});
 </script>
 </body>
 </html>

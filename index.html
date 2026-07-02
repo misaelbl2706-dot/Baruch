@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -338,7 +338,6 @@ const animateCounter = (counter) => {
     const target = Number(counter.dataset.count);
     const duration = 850;
     const start = performance.now();
-    counter.textContent = "+0";
 
     const tick = (now) => {
         const progress = Math.min((now - start) / duration, 1);
@@ -358,7 +357,17 @@ const counterObserver = new IntersectionObserver((entries, observer) => {
     });
 }, { threshold:.5 });
 
-counters.forEach((counter) => counterObserver.observe(counter));
+// Observe counters and trigger animation if already visible
+window.addEventListener("DOMContentLoaded", () => {
+    counters.forEach((counter) => {
+        const rect = counter.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            animateCounter(counter);
+        } else {
+            counterObserver.observe(counter);
+        }
+    });
+});
 
 </script>
 </body>
